@@ -1,8 +1,8 @@
 'use strict'
 
-let getHole = index => document.getElementById(`hole${index}`);
-let deadMole = document.getElementById('dead');
-let lostMole = document.getElementById('lost');
+const getHole = index => document.getElementById(`hole${index}`);
+const deadMole = document.getElementById('dead');
+const lostMole = document.getElementById('lost');
 let win = parseInt(deadMole.textContent);
 let lost = parseInt(lostMole.textContent);
 
