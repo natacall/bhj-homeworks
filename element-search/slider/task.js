@@ -1,31 +1,28 @@
 'use strict';
 
-const menuItem = document.querySelectorAll('.slider__item');
-const previous = document.querySelector('.slider__arrow_prev');
+const prev = document.querySelector('.slider__arrow_prev');
 const next = document.querySelector('.slider__arrow_next');
-let count = 0;
+const slider = document.querySelectorAll('.slider__item');
 
-for (let menu of Array.from(menuItem)) {
-    next.onclick = function () {
-      if (count == menuItem.length - 1) {
-        menuItem.item(count).classList.toggle('slider__item_active');
-        count = 0;
-        menuItem.item(count).classList.toggle('slider__item_active');
-      } else {
-        menuItem.item(count).classList.toggle('slider__item_active');
-        count++;
-        menuItem.item(count).classList.toggle('slider__item_active');
-      }
-    }
-    previous.onclick = function () {
-      if (count == 0) {
-        menuItem.item(count).classList.toggle('slider__item_active');
-        count = menuItem.length - 1;
-        menuItem.item(count).classList.toggle('slider__item_active');
-      } else {
-        menuItem.item(count).classList.toggle('slider__item_active');
-        count--;
-        menuItem.item(count).classList.toggle('slider__item_active');
-      }
-    }
-  }
+let index = 0;
+
+function deactivation(index) {
+    slider.item(index).classList.remove('slider__item_active');
+}
+
+function activation(index) {
+    slider.item(index).classList.add('slider__item_active');
+}
+
+prev.addEventListener('click', () => {
+    deactivation(index);
+    index = (index === 0) ? Array.from(slider).length - 1 : index - 1;
+    activation(index);
+})
+
+next.addEventListener('click', () => {
+    deactivation(index);
+    index = (index > Array.from(slider).length - 2) ? 0 : index + 1;
+    activation(index);
+})
+

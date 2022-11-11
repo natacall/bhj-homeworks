@@ -1,22 +1,22 @@
 'use strict';
 
-const menu_link = document.getElementsByClassName('menu__link');
+const menuLink = document.getElementsByClassName('menu__link');
 
-for (let i = 0; i < menu_link.length; i++) {
-  menu_link[i].onclick = function () {
-    const menu_main = this.closest('ul');
-    const menu_sub = this.parentElement.querySelector('.menu_sub');
+for (let i = 0; i < menuLink.length; i++) {
+  menuLink[i].onclick = function () {
+    const menuMain = this.closest('ul');
+    const menuSub = this.parentElement.querySelector('.menu_sub');
 
-    if (menu_main.className === 'menu menu_main') {
-      const menu_active = menu_main.querySelector('.menu_active');
-      if (menu_active && (menu_active !== menu_sub))
-        menu_active.className = 'menu menu_sub';
+    if (menuMain.className === 'menu menu_main') {
+      const menuActive = menuMain.querySelector('.menu_active');
+      if (menuActive && (menuActive !== menuSub))
+        menuActive.className = 'menu menu_sub';
     }
 
-    if (menu_sub.className === 'menu menu_sub') {
-      menu_sub.className = 'menu menu_sub menu_active';
+    if (menuSub.className === 'menu menu_sub') {
+      menuSub.className = 'menu menu_sub menu_active';
     } else {
-      menu_sub.className = 'menu menu_sub';
+      menuSub.className = 'menu menu_sub';
     }
     return false;
   }
