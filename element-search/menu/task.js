@@ -1,23 +1,14 @@
-'use strict';
-
-const menuLink = document.getElementsByClassName('menu__link');
-
-for (let i = 0; i < menuLink.length; i++) {
-  menuLink[i].onclick = function () {
-    const menuMain = this.closest('ul');
-    const menuSub = this.parentElement.querySelector('.menu_sub');
-
-    if (menuMain.className === 'menu menu_main') {
-      const menuActive = menuMain.querySelector('.menu_active');
-      if (menuActive && (menuActive !== menuSub))
-        menuActive.className = 'menu menu_sub';
-    }
-
-    if (menuSub.className === 'menu menu_sub') {
-      menuSub.className = 'menu menu_sub menu_active';
-    } else {
-      menuSub.className = 'menu menu_sub';
-    }
-    return false;
-  }
-}
+document.querySelectorAll('.menu__link').forEach((link) => {
+  link.addEventListener('click', (event) => {
+      const linkMenu = link.parentElement.querySelector('.menu_sub');
+      link.closest('.menu').querySelectorAll('.menu_sub').forEach((menuSub) => {
+          if (linkMenu !== menuSub) {
+              menuSub.classList.remove('menu_active');
+          }
+      });
+      if (linkMenu !== null) {
+          linkMenu.classList.toggle('menu_active');
+          event.preventDefault();
+      }
+  })
+})
